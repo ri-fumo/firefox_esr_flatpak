@@ -2,6 +2,8 @@
     "org.mozilla.FirefoxESR": [
         "appstream-screenshots-not-mirrored-in-ostree",
         "appstream-external-screenshot-url",
+        "finish-args-own-name-wildcard-org.mozilla.firefox_esr",
+        "finish-args-own-name-wildcard-org.mozilla.firefox",
         "finish-args-contains-both-x11-and-wayland"
     ]
 }
