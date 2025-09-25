@@ -4,13 +4,13 @@ set -e
 
 update () {
 
-	relnum=$(awk '/tar.bz2/{print NR; exit}' "$MANIFEST_PATH")
+	relnum=$(awk '/tar.xz/{print NR; exit}' "$MANIFEST_PATH")
 	vernum=$(awk '/VERSION:/{print NR; exit}' "$MANIFEST_PATH")
 	shanum=$(awk '/sha256/{print NR}' "$MANIFEST_PATH"|tail -n1)
-	oldrelease=$(sed "${relnum}!d" "$MANIFEST_PATH"|sed -n '{s|.*/firefox-\(.*\)\.tar.bz2|\1|p;q;}')
+	oldrelease=$(sed "${relnum}!d" "$MANIFEST_PATH"|sed -n '{s|.*/firefox-\(.*\)\.tar.xz|\1|p;q;}')
 	newrelease=$(curl -I -s -L "https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US" 2>&1 | sed -n '/Location: /{s|.*/firefox-\(.*\)\.tar.*|\1|p;q;}')
 	sed -i "${relnum}s/$oldrelease/$newrelease/g" "$MANIFEST_PATH"
-	updrelease=$(sed "${relnum}!d" "$MANIFEST_PATH"|sed -n '{s|.*/firefox-\(.*\)\.tar.bz2|\1|p;q;}')
+	updrelease=$(sed "${relnum}!d" "$MANIFEST_PATH"|sed -n '{s|.*/firefox-\(.*\)\.tar.xz|\1|p;q;}')
 	versionold=$(echo "$oldrelease"|head -c 11)
 	versionnew=$(echo "$updrelease"|head -c 11)
 	sed -i "${vernum}s/VERSION: $versionold/VERSION: $versionnew/g" "$MANIFEST_PATH"
