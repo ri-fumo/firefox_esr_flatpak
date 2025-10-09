@@ -93,10 +93,11 @@ mv firefoxesr-origin.trustedkeys.gpg </var/lib | ~/.local/share>/flatpak/repo
 
 ### Expired
 
-If `flatpak` says that the key is expired, try removing the repo using
+If `flatpak` says that the key is expired, remove the remote and
+[install](#install) it again.
 
 ```bash
-flatpak remote-delete --force firefoxesr-origin
-```
+flatpak remote-delete firefoxesr-origin
 
-then add it back again.
+# Press y on the prompt
+```
