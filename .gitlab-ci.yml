@@ -6,7 +6,7 @@ variables:
 stages:
   - setup
   - build-x86_64
-  - build-aarch64
+#  - build-aarch64
   - update-repo
   - deploy
 
@@ -54,26 +54,27 @@ build-x86_64:
         ${MANIFEST_PATH}
   stage: build-x86_64
 
-build-aarch64:
-  variables:
-    ARCH: aarch64
-  extends: .setup
-  script:
-    - |
-      flatpak-builder build --arch=${ARCH} --user --install-deps-from=flathub --gpg-sign=${GPG_KEY_ID} \
-        --disable-rofiles-fuse --disable-updates --force-clean --repo=repo ${BRANCH:+--default-branch=$BRANCH} \
-        ${MANIFEST_PATH}
-  stage: build-aarch64
-  tags:
-    - saas-linux-large-arm64
-  dependencies:
-    - "build-x86_64"
+#build-aarch64:
+#  variables:
+#    ARCH: aarch64
+#  extends: .setup
+#  script:
+#    - |
+#      flatpak-builder build --arch=${ARCH} --user --install-deps-from=flathub --gpg-sign=${GPG_KEY_ID} \
+#        --disable-rofiles-fuse --disable-updates --force-clean --repo=repo ${BRANCH:+--default-branch=$BRANCH} \
+#        ${MANIFEST_PATH}
+#  stage: build-aarch64
+#  tags:
+#    - saas-linux-large-arm64
+#  dependencies:
+#    - "build-x86_64"
 
 update-repo:
   stage: update-repo
   image: ${DOCKER_IMAGE}
   dependencies:
-    - "build-aarch64"
+     - "build-x86_64"
+#    - "build-aarch64"
   extends: .setup
   script:
     - flatpak build-update-repo --gpg-sign=${GPG_KEY_ID} --generate-static-deltas --prune repo
