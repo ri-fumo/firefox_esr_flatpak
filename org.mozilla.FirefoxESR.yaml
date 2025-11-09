@@ -59,10 +59,8 @@ modules:
     sources:
       - type: file
         path: files/org.mozilla.firefox.search-provider.ini
-        sha256: 1035370c8d208139189819ed492557d8a7d9b114ea0a423451cdc328793c7661
       - type: file
         path: files/org.mozilla.firefox.SearchProvider.service
-        sha256: 051c8fd14aa4b67bb5bbee0dcc003d8f005ee4a80cb636089dde24365d4293f8
 
   - name: desktop-file
     buildsystem: simple
@@ -71,7 +69,6 @@ modules:
     sources:
       - type: file
         path: files/org.mozilla.firefox.desktop
-        sha256: 7eae1523a871c67bed453dc5c2f8d14673743090e2f4b1af19da53f6087b70da
 
   - name: launch-script
     buildsystem: simple
@@ -83,20 +80,19 @@ modules:
         # https://hg.mozilla.org/mozilla-central/raw-file/33f0079fba2d08c293f0a63890fa88c78e2550ec/taskcluster/docker/firefox-flatpak/launch-script.sh
         commands:
           - export TMPDIR=$XDG_CACHE_HOME/tmp
-          - exec /app/lib/firefox/firefox --name org.mozilla.FirefoxESR --class org.mozilla.FirefoxESR "$@"
+          - >
+            exec /app/lib/firefox/firefox
+            --name org.mozilla.FirefoxESR
+            --class org.mozilla.FirefoxESR
+            "$@"
 
   - name: metainfo
     buildsystem: simple
-    build-options:
-      env:
-        VERSION: 140.4.0esr
     build-commands:
-      - sed -i -e "s/\$VERSION/${VERSION}/" -e "s/\$DATE/$(date '+%F')/" org.mozilla.firefox.appdata.xml.in
       - install -Dm644 org.mozilla.firefox.appdata.xml.in ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: file
         path: files/org.mozilla.firefox.appdata.xml.in
-        sha256: 73e1e51445b10b33176dff7591b485705b2fa486dab1462917d653083df14b32
 
   - name: icons
     buildsystem: simple
@@ -117,7 +113,6 @@ modules:
     sources:
       - type: file
         path: files/distribution.ini
-        sha256: 9b9bb1739006b4a8ee0ca8331812489c32517cd947ee915e0ecaffef03dc4544
 
   - name: firefox-esr
     buildsystem: simple
@@ -132,10 +127,10 @@ modules:
       - type: archive
         url: https://download-installer.cdn.mozilla.net/pub/firefox/releases/140.4.0esr/linux-x86_64/en-US/firefox-140.4.0esr.tar.xz
         sha256: 265c0799e79b8003e20508a8164040d0109837150eba892f53f1e5ae628b576d
-#        x-checker-data:
-#          type: rotating-url
-#          url: https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=linux64&lang=en-US
-#          pattern: https://download-installer.cdn.mozilla.net/pub/firefox/nightly/latest-mozilla-central/firefox-([0-9.]+)a([0-9.]+).en-US.linux-x86_64.tar.bz2
+        x-checker-data:
+          type: rotating-url
+          url: https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US
+          pattern: https://download-installer.cdn.mozilla.net/pub/firefox/releases/[0-9.]+esr/linux-x86_64/en-US/firefox-([0-9.]+esr).tar.xz
 
   - name: languagepacks
     buildsystem: simple

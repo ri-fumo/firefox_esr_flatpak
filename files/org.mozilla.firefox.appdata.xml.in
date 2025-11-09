@@ -11,21 +11,22 @@
     <p>NOTE: This is an unofficial repackaging of Mozilla binary packages and not supported by Mozilla</p>
     <p>When it comes to your life online, you have a choice: accept the factory settings or put your privacy first. When you choose Firefox ESR as your default browser, you’re choosing to protect your data while supporting an independent tech company. Firefox ESR is also the only major browser backed by a non-profit fighting to give you more openness, transparency and control of your life online. Join hundreds of millions of people who choose to protect what's important by choosing Firefox ESR - a web browser designed to be fast, easy to use, customizable and private.</p>
   </description>
-  <releases>
-	<release version="$VERSION" date="$DATE"/>
-  </releases>
   <keywords>
     <keyword>mozilla</keyword>
     <keyword>internet</keyword>
     <keyword>web</keyword>
   </keywords>
-  <content_rating type="oars-1.1" />
+  <content_rating type="oars-1.1"/>
   <url type="homepage">https://www.mozilla.org/firefox/</url>
   <url type="donation">https://donate.mozilla.org/</url>
   <url type="bugtracker">https://gitlab.com/projects261/firefox-esr-flatpak/-/issues</url>
   <url type="help">https://gitlab.com/projects261/firefox-esr-flatpak/-/issues</url>
   <url type="translate">https://wiki.mozilla.org/L10n:Starting_a_localization</url>
-
+  <releases>
+    <release version="140.4.0esr" date="2025-10-13">
+      <description></description>
+    </release>
+  </releases>
   <screenshots>
     <screenshot type="default">
       <image type="source">https://gitlab.com/projects261/firefox-esr-flatpak/-/raw/main/files/screenshot01-first-run.png</image>
