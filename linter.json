@@ -4,6 +4,6 @@
         "appstream-external-screenshot-url",
         "finish-args-own-name-wildcard-org.mozilla.firefox_esr",
         "finish-args-own-name-wildcard-org.mozilla.firefox",
-        "finish-args-contains-both-x11-and-wayland"
+        "finish-args-unnecessary-xdg-config-gtk-3.0-ro-access"
     ]
 }

@@ -29,6 +29,7 @@ finish-args:
 
   - --require-version=0.11.1
 
+  - --filesystem=xdg-config/gtk-3.0:ro
   - --filesystem=xdg-download
   - --filesystem=/run/.heim_org.h5l.kcm-socket
   - --filesystem=xdg-run/speech-dispatcher:ro
