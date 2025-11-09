@@ -1,16 +1,11 @@
 app-id: org.mozilla.FirefoxESR
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 base: org.mozilla.firefox.BaseApp
-base-version: '24.08'
+base-version: '25.08'
 command: firefox-esr
 add-extensions:
-  org.freedesktop.Platform.ffmpeg-full:
-    directory: lib/ffmpeg
-    add-ld-path: .
-    no-autodownload: true
-    version: '24.08'
   org.mozilla.FirefoxESR.systemconfig:
     directory: etc/firefox
     no-autodownload: true
@@ -53,7 +48,6 @@ finish-args:
   - --own-name=org.mozilla.firefox_esr.*
 
 cleanup-commands:
-  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
   - mkdir -p ${FLATPAK_DEST}/etc/firefox
 
 modules:
