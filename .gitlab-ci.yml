@@ -73,7 +73,7 @@ update-repo:
   stage: update-repo
   image: ${DOCKER_IMAGE}
   dependencies:
-     - "build-x86_64"
+    - "build-x86_64"
 #    - "build-aarch64"
   extends: .setup
   script:
