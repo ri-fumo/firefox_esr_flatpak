@@ -1,5 +1,6 @@
 variables:
-  MANIFEST_PATH: $CI_PROJECT_DIR/org.mozilla.FirefoxESR.yaml
+  MANIFEST_NAME: org.mozilla.FirefoxESR.yaml
+  MANIFEST_PATH: $CI_PROJECT_DIR/$MANIFEST_NAME
   DOCKER_IMAGE: "ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-25.08"
   SCHEDULE_TASK: default
 
@@ -111,7 +112,10 @@ update-sources:
     - git config --global user.name "${GITLAB_USER_LOGIN}"
     - git config --global user.email "${GITLAB_USER_EMAIL}"
   script:
-    - /app/flatpak-external-data-checker --update --commit-to-current-branch $MANIFEST_PATH
+    - git fetch origin --prune --quiet
+    - git checkout -B "$CI_DEFAULT_BRANCH" "origin/$CI_DEFAULT_BRANCH"
+    - git pull origin "$CI_DEFAULT_BRANCH"
+    - /app/flatpak-external-data-checker --update --commit-to-current-branch $MANIFEST_NAME
     - git push "https://${GITLAB_USER_NAME}:${CI_GIT_TOKEN}@${CI_REPOSITORY_URL#*@}" HEAD:main || true
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "trigger"
