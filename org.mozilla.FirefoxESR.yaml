@@ -126,8 +126,8 @@ modules:
       - rm -f ${FLATPAK_DEST}/lib/firefox/update-settings.ini
     sources:
       - type: archive
-        url: https://download-installer.cdn.mozilla.net/pub/firefox/releases/140.7.1esr/linux-x86_64/en-US/firefox-140.7.1esr.tar.xz
-        sha256: c17d8f1c71c425835acd8f8e991d9539303be9b13b8eb194a5932c19582fa789
+        url: https://download-installer.cdn.mozilla.net/pub/firefox/releases/140.8.0esr/linux-x86_64/en-US/firefox-140.8.0esr.tar.xz
+        sha256: aac63c496d14c4569ca7c64d5c8972d59f1217fd21e2548832a202e19c6e5534
         x-checker-data:
           type: rotating-url
           url: https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US
