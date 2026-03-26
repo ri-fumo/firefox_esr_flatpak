@@ -98,14 +98,13 @@ modules:
   - name: icons
     buildsystem: simple
     build-commands:
-      - unzip Firefox-Browser-Logo-Assets.zip "Icon (Full Color)/Fx-Browser-icon-fullColor.svg"
-      - unzip Firefox-Browser-Logo-Assets.zip "Icon (One Color)/Fx-Browser-icon-oneColor-white.svg"
-      - install -Dm644 "Icon (Full Color)/Fx-Browser-icon-fullColor.svg" "${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
-      - install -Dm644 "Icon (One Color)/Fx-Browser-icon-oneColor-white.svg" "${FLATPAK_DEST}/share/icons/hicolor/symbolic/apps/${FLATPAK_ID}-symbolic.svg"
+      - install -Dm644 "Fx-Browser-icon-fullColor.svg" "${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
+      - install -Dm644 "Fx-Browser-icon-oneColor-white.svg" "${FLATPAK_DEST}/share/icons/hicolor/symbolic/apps/${FLATPAK_ID}-symbolic.svg"
     sources:
       - type: file
-        url: https://mozilla.design/files/2019/10/Firefox-Browser-Logo-Assets.zip
-        sha256: 82663d2125ddf19c48847f612a3d0b1a8b67359997966b966c49f2710e75b901
+        path: files/Fx-Browser-icon-fullColor.svg
+      - type: file
+        path: files/Fx-Browser-icon-oneColor-white.svg
 
   - name: distribution
     buildsystem: simple
