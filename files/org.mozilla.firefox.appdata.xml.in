@@ -23,8 +23,11 @@
   <url type="help">https://gitlab.com/projects261/firefox-esr-flatpak/-/issues</url>
   <url type="translate">https://wiki.mozilla.org/L10n:Starting_a_localization</url>
   <releases>
-    <release version="140.10.2esr" date="2026-05-07">
+    <release version="140.11.0esr" date="2026-05-18">
       <description></description>
+    </release>
+    <release version="140.10.2esr" date="2026-05-07">
+      <description/>
     </release>
     <release version="140.10.1esr" date="2026-04-28">
       <description/>
