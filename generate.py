@@ -18,22 +18,21 @@ def main() -> None:
 
 	base_url = f'https://download-installer.cdn.mozilla.net/pub/firefox/releases/{version}'
 
-
-	app_url= f'linux-{platform.machine()}/en-US/firefox-{version}.tar.xz'
-	prefix = f'linux-{platform.machine()}/xpi/'
-	app=('', '')
+	app_path= f'linux-{platform.machine()}/en-US/firefox-{version}.tar.xz'
+	langpack_path = f'linux-{platform.machine()}/xpi'
+	app: tuple[str, str | None] = ('', None)
 	langpacks: dict[str, str] = {}
 	hashsums_url = f'{base_url}/SHA512SUMS'
 	for attempt in range(max_retries):
 		try:
 			with urllib.request.urlopen(hashsums_url, timeout=10) as response:
 				for line in response:
-					[hash, url] = line.decode().strip().split('  ', 1)
+					[hash, path] = line.decode().strip().split('  ', 1)
 
-					if url == app_url:
-						app= (f'{base_url}/{url}', str(hash))
-					elif url.startswith(prefix):
-						langpacks[f'{base_url}/{url}'] = str(hash)
+					if not app[1] and path == app_path:
+						app= (f'{base_url}/{path}', hash)
+					elif path.startswith(langpack_path):
+						langpacks[path[len(langpack_path) + 1: -4]] = hash
 			break
 		except:
 			if attempt + 1 == max_retries: raise
@@ -41,7 +40,7 @@ def main() -> None:
 	app_mf: list[dict[str, str | dict[str, str]]] = [{
 		'type': 'archive',
 		'url': app[0],
-		'sha512': app[1],
+		'sha512': str(app[1]),
 		'x-checker-data': {
 			'type': 'rotating-url',
 			'url': 'https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US',
@@ -50,11 +49,11 @@ def main() -> None:
 	}]
 	langpacks_mf = [{
 		'type': 'file',
-		'url': url,
-		'sha512': langpacks[url],
+		'url': os.path.join(base_url, langpack_path, f'{lang}.xpi'),
+		'sha512': langpacks[lang],
 		'dest': 'langpacks',
-		'dest-filename': f'langpack-{os.path.basename(url)[0: -4]}@firefox.mozilla.org.xpi',
-	} for url in langpacks]
+		'dest-filename': f'langpack-{lang}@firefox.mozilla.org.xpi',
+	} for lang in langpacks]
 	if not os.path.exists('generated'):
 		os.mkdir('generated')
 	with open('generated/firefox_esr.json', 'w') as fp:

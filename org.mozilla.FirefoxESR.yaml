@@ -132,6 +132,6 @@ modules:
     build-commands:
       - mkdir -p /app/firefox/distribution/extensions
       # https://github.com/flathub/org.mozilla.Thunderbird/blob/22e4c5bfffa1a28507a0009c3c84c4f17d69c262/org.mozilla.Thunderbird.json#L244
-      - for lang in langpacks/*.xpi;do export locale=$(basename -s .xpi $lang); install -Dm644 -t /app/share/runtime/locale/${locale:9:2}/ $lang; ln -sf /app/share/runtime/locale/${locale:9:2}/$(basename $lang) /app/firefox/distribution/extensions/$(basename $lang); done
+      - for lang in langpacks/*.xpi;do export locale=${lang:19:2}; install -Dm644 -t /app/share/runtime/locale/$locale/ $lang; ln -sf /app/share/runtime/locale/$locale/$(basename $lang) /app/firefox/distribution/extensions/$(basename $lang); done
     sources:
       - generated/langpacks.json
