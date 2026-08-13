@@ -31,6 +31,10 @@ jobs:
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
           fingerprint: 175C7380AE061A3EA5BA74343D950BC731C644E3
 
+      - name: Install BaseApp
+        shell: bash
+        run: flatpak install flathub -y org.mozilla.firefox.BaseApp/x86_64/25.08
+
       - name: Build
         uses: andyholmes/flatter@main
         with:
