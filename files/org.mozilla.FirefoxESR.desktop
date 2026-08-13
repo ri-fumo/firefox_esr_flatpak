@@ -4,14 +4,14 @@ Type=Application
 Exec=firefox-esr %u
 Terminal=false
 X-MultipleArgs=false
-Icon=org.mozilla.FirefoxESR
+Icon=org.mozilla.firefox
 StartupWMClass=org.mozilla.FirefoxESR
 DBusActivatable=false
 Categories=GNOME;GTK;Network;WebBrowser;
 MimeType=application/json;application/pdf;application/rdf+xml;application/rss+xml;application/x-xpinstall;application/xhtml+xml;application/xml;audio/flac;audio/ogg;audio/webm;image/avif;image/gif;image/jpeg;image/png;image/svg+xml;image/webp;text/html;text/xml;video/ogg;video/webm;x-scheme-handler/chrome;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;
 StartupNotify=true
 Actions=new-window;new-private-window;open-profile-manager;
-Name=Firefox ESR (Unofficial)
+Name=Firefox ESR
 Comment=Fast and private browser
 Comment[ach]=Fast and private browser
 Comment[af]=Fast and private browser
@@ -321,7 +321,7 @@ Keywords[vi]=Internet;WWW;Trình duyệt;Web;Duyệt web;
 Keywords[xh]=Internet;WWW;Browser;Web;Explorer;
 Keywords[zh_CN]=Internet;WWW;Browser;Web;Explorer;
 Keywords[zh_TW]=網際網路;網路;瀏覽器;網頁;上網;Internet;WWW;Browser;Web;Explorer;
-X-GNOME-FullName=Firefox ESR Web Browser (Unofficial)
+X-GNOME-FullName=Firefox ESR Web Browser (Unoffical)
 
 [Desktop Action new-window]
 Exec=firefox-esr --new-window %u

@@ -55,21 +55,21 @@ modules:
   - name: search-provider
     buildsystem: simple
     build-commands:
-      - install -Dm644 org.mozilla.firefox.search-provider.ini ${FLATPAK_DEST}/share/gnome-shell/search-providers/${FLATPAK_ID}-search-provider.ini
-      - install -Dm644 org.mozilla.firefox.SearchProvider.service ${FLATPAK_DEST}/share/dbus-1/services/${FLATPAK_ID}.SearchProvider.service
+      - install -Dm644 org.mozilla.FirefoxESR.search-provider.ini ${FLATPAK_DEST}/share/gnome-shell/search-providers/${FLATPAK_ID}-search-provider.ini
+      - install -Dm644 org.mozilla.FirefoxESR.SearchProvider.service ${FLATPAK_DEST}/share/dbus-1/services/${FLATPAK_ID}.SearchProvider.service
     sources:
       - type: file
-        path: files/org.mozilla.firefox.search-provider.ini
+        path: files/org.mozilla.FirefoxESR.search-provider.ini
       - type: file
-        path: files/org.mozilla.firefox.SearchProvider.service
+        path: files/org.mozilla.FirefoxESR.SearchProvider.service
 
   - name: desktop-file
     buildsystem: simple
     build-commands:
-      - install -Dm644 org.mozilla.firefox.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 org.mozilla.FirefoxESR.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: file
-        path: files/org.mozilla.firefox.desktop
+        path: files/org.mozilla.FirefoxESR.desktop
 
   - name: launch-script
     buildsystem: simple
@@ -90,10 +90,10 @@ modules:
   - name: metainfo
     buildsystem: simple
     build-commands:
-      - install -Dm644 org.mozilla.firefox.appdata.xml.in ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
+      - install -Dm644 org.mozilla.FirefoxESR.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: file
-        path: files/org.mozilla.firefox.appdata.xml.in
+        path: files/org.mozilla.FirefoxESR.appdata.xml
 
   - name: icons
     buildsystem: simple
@@ -124,15 +124,9 @@ modules:
       - rm -f ${FLATPAK_DEST}/lib/firefox/firefox-config
       - rm -f ${FLATPAK_DEST}/lib/firefox/update-settings.ini
     sources:
-      - type: archive
-        url: https://download-installer.cdn.mozilla.net/pub/firefox/releases/140.13.0esr/linux-x86_64/en-US/firefox-140.13.0esr.tar.xz
-        sha256: 866d7e5f94abe93132e02a0db72da32b6e133905fcbea6afa417a96d496021da
-        x-checker-data:
-          type: rotating-url
-          url: https://download.mozilla.org/?product=firefox-esr-latest&os=linux64&lang=en-US
-          pattern: https://download-installer.cdn.mozilla.net/pub/firefox/releases/[0-9.]+esr/linux-x86_64/en-US/firefox-([0-9.]+esr).tar.xz
+      - generated/firefox_esr.json
 
-  - name: languagepacks
+  - name: lang-packs
     buildsystem: simple
     build-commands:
       - mkdir -p /app/firefox/distribution/extensions
@@ -141,4 +135,4 @@ modules:
         -Dm644 -t /app/share/runtime/locale/${locale:9:2}/ $lang; ln -sf /app/share/runtime/locale/${locale:9:2}/$(basename
         $lang) /app/firefox/distribution/extensions/$(basename $lang); done
     sources:
-      - generated-sources.json
+      - generated/lang_packs.json

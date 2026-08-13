@@ -3,3 +3,4 @@ gpg
 build
 repo
 .flatpak
+generated/

@@ -19,12 +19,12 @@
   <content_rating type="oars-1.1"/>
   <url type="homepage">https://www.mozilla.org/firefox/</url>
   <url type="donation">https://donate.mozilla.org/</url>
-  <url type="bugtracker">https://gitlab.com/projects261/firefox-esr-flatpak/-/issues</url>
-  <url type="help">https://gitlab.com/projects261/firefox-esr-flatpak/-/issues</url>
+  <url type="bugtracker">https://github.com/ri-fumo/firefox_esr_flatpak/issues</url>
+  <url type="help">https://github.com/ri-fumo/firefox_esr_flatpak/issues</url>
   <url type="translate">https://wiki.mozilla.org/L10n:Starting_a_localization</url>
   <releases>
     <release version="140.13.0esr" date="2026-07-20">
-      <description></description>
+      <description/>
     </release>
     <release version="140.12.0esr" date="2026-06-15">
       <description/>
@@ -68,15 +68,15 @@
   </releases>
   <screenshots>
     <screenshot type="default">
-      <image type="source">https://gitlab.com/projects261/firefox-esr-flatpak/-/raw/main/files/screenshot01-first-run.png</image>
+      <image type="source">https://github.com/ri-fumo/firefox_esr_flatpak/raw/refs/heads/main/files/screenshot-first-run.png</image>
       <caption>The “Welcome to Firefox” page: “Open up an amazing internet”</caption>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.com/projects261/firefox-esr-flatpak/-/raw/main/files/screenshot01-newtab.png</image>
+      <image type="source">https://github.com/ri-fumo/firefox_esr_flatpak/raw/refs/heads/main/files/screenshot-newtab.png</image>
       <caption>The New Tab page</caption>
     </screenshot>
     <screenshot>
-      <image type="source">https://gitlab.com/projects261/firefox-esr-flatpak/-/raw/main/files/screenshot01-wikipedia.png</image>
+      <image type="source">https://github.com/ri-fumo/firefox_esr_flatpak/raw/refs/heads/main/files/screenshot-wikipedia.png</image>
       <caption>A Wikipedia page</caption>
     </screenshot>
   </screenshots>
