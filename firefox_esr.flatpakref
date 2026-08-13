@@ -2,7 +2,7 @@
 Title=Firefox ESR
 Name=org.mozilla.FirefoxESR
 Branch=unoffical
-Url=http://ri-fumo.github.io/firefox_esr_flatpak
+Url=https://ri-fumo.github.io/firefox_esr_flatpak
 SuggestRemoteName=firefox_esr
 Homepage=https://github.com/ri-fumo/firefox_esr_flatpak
 Icon=https://gitlab.com/uploads/-/system/project/avatar/40229646/Creative-Tail-Animal-fox.svg.png
