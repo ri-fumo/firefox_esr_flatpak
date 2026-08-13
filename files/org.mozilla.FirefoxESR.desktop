@@ -321,7 +321,7 @@ Keywords[vi]=Internet;WWW;Trình duyệt;Web;Duyệt web;
 Keywords[xh]=Internet;WWW;Browser;Web;Explorer;
 Keywords[zh_CN]=Internet;WWW;Browser;Web;Explorer;
 Keywords[zh_TW]=網際網路;網路;瀏覽器;網頁;上網;Internet;WWW;Browser;Web;Explorer;
-X-GNOME-FullName=Firefox ESR Web Browser (Unoffical)
+X-GNOME-FullName=Firefox ESR Web Browser (Unofficial)
 
 [Desktop Action new-window]
 Exec=firefox-esr --new-window %u
