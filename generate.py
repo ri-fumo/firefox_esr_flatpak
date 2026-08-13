@@ -22,7 +22,7 @@ def main() -> None:
 	app_url= f'linux-{platform.machine()}/en-US/firefox-{version}.tar.xz'
 	prefix = f'linux-{platform.machine()}/xpi/'
 	app=('', '')
-	lang_packs: dict[str, str] = {}
+	langpacks: dict[str, str] = {}
 	hashsums_url = f'{base_url}/SHA512SUMS'
 	for attempt in range(max_retries):
 		try:
@@ -33,7 +33,7 @@ def main() -> None:
 					if url == app_url:
 						app= (f'{base_url}/{url}', str(hash))
 					elif url.startswith(prefix):
-						lang_packs[f'{base_url}/{url}'] = str(hash)
+						langpacks[f'{base_url}/{url}'] = str(hash)
 			break
 		except:
 			if attempt + 1 == max_retries: raise
@@ -48,18 +48,19 @@ def main() -> None:
 			'pattern': 'https://download-installer.cdn.mozilla.net/pub/firefox/releases/[0-9.]+esr/linux-x86_64/en-US/firefox-([0-9.]+esr).tar.xz',
 		},
 	}]
-	lang_packs_mf = [{
+	langpacks_mf = [{
 		'type': 'file',
 		'url': url,
-		'sha512': lang_packs[url],
-		'dest': 'langpacks'
-	} for url in lang_packs]
+		'sha512': langpacks[url],
+		'dest': 'langpacks',
+		'dest-filename': f'langpack-{os.path.basename(url)[0: -4]}@firefox.mozilla.org.xpi',
+	} for url in langpacks]
 	if not os.path.exists('generated'):
 		os.mkdir('generated')
 	with open('generated/firefox_esr.json', 'w') as fp:
 		json.dump(app_mf, fp, indent='\t')
-	with open('generated/lang_packs.json', 'w') as fp:
-		json.dump(lang_packs_mf, fp, indent='\t')
+	with open('generated/langpacks.json', 'w') as fp:
+		json.dump(langpacks_mf, fp, indent='\t')
 
 
 if __name__ == '__main__':
