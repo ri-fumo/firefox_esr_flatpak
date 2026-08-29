@@ -23,6 +23,9 @@
   <url type="help">https://github.com/ri-fumo/firefox_esr_flatpak/issues</url>
   <url type="translate">https://wiki.mozilla.org/L10n:Starting_a_localization</url>
   <releases>
+    <release version="140.14.0esr" date="2026-08-18">
+      <description/>
+    </release>
     <release version="140.13.0esr" date="2026-07-20">
       <description/>
     </release>
@@ -60,9 +63,6 @@
       <description/>
     </release>
     <release version="140.5.0esr" date="2025-11-10">
-      <description/>
-    </release>
-    <release version="140.4.0esr" date="2025-10-13">
       <description/>
     </release>
   </releases>
