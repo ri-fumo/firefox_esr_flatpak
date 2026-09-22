@@ -6,14 +6,18 @@
 
 2. Add the [Flathub](https://flathub.org/setup) repository if absent
 
-3. Install this package
+3. Add this repository & Install this package
 
+ * System
 ```bash
-# System
-flatpak install https://github.com/ri-fumo/firefox_esr_flatpak/raw/refs/heads/main/firefox_esr.flatpakref
+flatpak remote-add firefox_esr https://ri-fumo.github.io/firefox_esr_flatpak/index.flatpakrepo
+flatpak install firefox_esr org.mozilla.firefox_esr
+```
 
-# User
-flatpak install --user https://github.com/ri-fumo/firefox_esr_flatpak/raw/refs/heads/main/firefox_esr.flatpakref
+ * User
+```bash
+flatpak remote-add --user firefox_esr https://ri-fumo.github.io/firefox_esr_flatpak/index.flatpakrepo
+flatpak install --user firefox_esr org.mozilla.firefox_esr
 ```
 
 ## Uninstall
@@ -62,8 +66,7 @@ See https://docs.flatpak.org/en/latest/hosting-a-repository.html#hosting-a-repos
 git clone https://github.com/ri-fumo/firefox_esr_flatpak.git && cd firefox_esr_flatpak
 ```
 
-2. Install flatpak, [flatpak-builder](https://docs.flatpak.org/en/latest/flatpak-builder.html) and set up the Flathub repository
-on `user` location.
+2. Install flatpak, [flatpak-builder](https://docs.flatpak.org/en/latest/flatpak-builder.html) and set up the Flathub repository on `user` location.
 
 3. Run these commands to build and install
 
