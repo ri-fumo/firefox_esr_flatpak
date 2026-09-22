@@ -1,4 +1,4 @@
-app-id: org.mozilla.FirefoxESR
+app-id: org.mozilla.firefox_esr
 default-branch: unofficial
 runtime: org.freedesktop.Platform
 runtime-version: '25.08'
@@ -7,7 +7,7 @@ base: org.mozilla.firefox.BaseApp
 base-version: '25.08'
 command: firefox-esr
 add-extensions:
-  org.mozilla.FirefoxESR.systemconfig:
+  org.mozilla.firefox_esr.systemconfig:
     directory: etc/firefox
     no-autodownload: true
 
@@ -26,7 +26,7 @@ finish-args:
   - --socket=wayland
 
   - --env=DICPATH=/usr/share/hunspell
-  - --env=MOZ_APP_REMOTINGNAME=org.mozilla.FirefoxESR
+  - --env=MOZ_APP_REMOTINGNAME=org.mozilla.firefox_esr
 
   - --require-version=0.11.1
 
@@ -56,21 +56,21 @@ modules:
   - name: search-provider
     buildsystem: simple
     build-commands:
-      - install -Dm644 org.mozilla.FirefoxESR.search-provider.ini ${FLATPAK_DEST}/share/gnome-shell/search-providers/${FLATPAK_ID}-search-provider.ini
-      - install -Dm644 org.mozilla.FirefoxESR.SearchProvider.service ${FLATPAK_DEST}/share/dbus-1/services/${FLATPAK_ID}.SearchProvider.service
+      - install -Dm644 org.mozilla.firefox_esr.search-provider.ini ${FLATPAK_DEST}/share/gnome-shell/search-providers/${FLATPAK_ID}-search-provider.ini
+      - install -Dm644 org.mozilla.firefox_esr.SearchProvider.service ${FLATPAK_DEST}/share/dbus-1/services/${FLATPAK_ID}.SearchProvider.service
     sources:
       - type: file
-        path: files/org.mozilla.FirefoxESR.search-provider.ini
+        path: files/org.mozilla.firefox_esr.search-provider.ini
       - type: file
-        path: files/org.mozilla.FirefoxESR.SearchProvider.service
+        path: files/org.mozilla.firefox_esr.SearchProvider.service
 
   - name: desktop-file
     buildsystem: simple
     build-commands:
-      - install -Dm644 org.mozilla.FirefoxESR.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 org.mozilla.firefox_esr.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: file
-        path: files/org.mozilla.FirefoxESR.desktop
+        path: files/org.mozilla.firefox_esr.desktop
 
   - name: launch-script
     buildsystem: simple
@@ -84,17 +84,17 @@ modules:
           - export TMPDIR=$XDG_CACHE_HOME/tmp
           - >
             exec /app/lib/firefox/firefox
-            --name org.mozilla.FirefoxESR
-            --class org.mozilla.FirefoxESR
+            --name org.mozilla.firefox_esr
+            --class org.mozilla.firefox_esr
             "$@"
 
   - name: metainfo
     buildsystem: simple
     build-commands:
-      - install -Dm644 org.mozilla.FirefoxESR.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
+      - install -Dm644 org.mozilla.firefox_esr.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: file
-        path: files/org.mozilla.FirefoxESR.appdata.xml
+        path: files/org.mozilla.firefox_esr.appdata.xml
 
   - name: icons
     buildsystem: simple

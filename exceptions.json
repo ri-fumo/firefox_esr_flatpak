@@ -1,5 +1,5 @@
 {
-    "org.mozilla.FirefoxESR": [
+    "org.mozilla.firefox_esr": [
         "appstream-screenshots-not-mirrored-in-ostree",
         "appstream-external-screenshot-url",
         "finish-args-own-name-wildcard-org.mozilla.firefox_esr",

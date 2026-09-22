@@ -1,6 +1,6 @@
 [Flatpak Ref]
 Title=Firefox ESR
-Name=org.mozilla.FirefoxESR
+Name=org.mozilla.firefox_esr
 Branch=unofficial
 Url=https://ri-fumo.github.io/firefox_esr_flatpak
 SuggestRemoteName=firefox_esr

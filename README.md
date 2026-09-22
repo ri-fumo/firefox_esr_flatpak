@@ -20,10 +20,10 @@ flatpak install --user https://github.com/ri-fumo/firefox_esr_flatpak/raw/refs/h
 
 ```bash
 # Only remove
-flatpak remove org.mozilla.FirefoxESR
+flatpak remove org.mozilla.firefox_esr
 
 # Delete data and remove
-flatpak remove org.mozilla.FirefoxESR --delete-data
+flatpak remove org.mozilla.firefox_esr --delete-data
 
 # Clear dependencies
 flatpak uninstall --unused
@@ -68,7 +68,7 @@ on `user` location.
 3. Run these commands to build and install
 
 ```bash
-python3 generate.py && flatpak-builder build --force-clean --user --install-deps-from=flathub --install org.mozilla.FirefoxESR.yaml
+python3 generate.py && flatpak-builder build --force-clean --user --install-deps-from=flathub --install org.mozilla.firefox_esr.yaml
 ```
 
 4. To update, redo step #3.

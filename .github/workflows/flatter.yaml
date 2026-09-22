@@ -39,7 +39,7 @@ jobs:
         uses: andyholmes/flatter@main
         with:
           files: |
-            org.mozilla.FirefoxESR.yaml
+            org.mozilla.firefox_esr.yaml
           arch: x86_64
           gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
           upload-bundles: true

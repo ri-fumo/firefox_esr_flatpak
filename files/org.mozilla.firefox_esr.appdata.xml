@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>org.mozilla.FirefoxESR</id>
-  <launchable type="desktop-id">org.mozilla.FirefoxESR.desktop</launchable>
+  <id>org.mozilla.firefox_esr</id>
+  <launchable type="desktop-id">org.mozilla.firefox_esr.desktop</launchable>
   <name>Firefox ESR (Unofficial)</name>
   <developer_name>Mozilla</developer_name>
   <summary>Fast, Private &amp; Safe Web Browser</summary>
@@ -23,6 +23,12 @@
   <url type="help">https://github.com/ri-fumo/firefox_esr_flatpak/issues</url>
   <url type="translate">https://wiki.mozilla.org/L10n:Starting_a_localization</url>
   <releases>
+    <release version="140.16.0esr" date="2026-09-15">
+      <description/>
+    </release>
+    <release version="140.15.0esr" date="2026-09-01">
+      <description/>
+    </release>
     <release version="140.14.0esr" date="2026-08-18">
       <description/>
     </release>
@@ -45,24 +51,6 @@
       <description/>
     </release>
     <release version="140.9.1esr" date="2026-04-07">
-      <description/>
-    </release>
-    <release version="140.9.0esr" date="2026-03-23">
-      <description/>
-    </release>
-    <release version="140.8.0esr" date="2026-02-23">
-      <description/>
-    </release>
-    <release version="140.7.1esr" date="2026-02-16">
-      <description/>
-    </release>
-    <release version="140.7.0esr" date="2026-01-12">
-      <description/>
-    </release>
-    <release version="140.6.0esr" date="2025-12-08">
-      <description/>
-    </release>
-    <release version="140.5.0esr" date="2025-11-10">
       <description/>
     </release>
   </releases>

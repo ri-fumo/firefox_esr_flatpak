@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.mozilla.firefox_esr.SearchProvider
+Exec=/app/bin/firefox-esr
