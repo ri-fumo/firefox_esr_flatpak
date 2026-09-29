@@ -4,4 +4,4 @@ build
 repo
 .flatpak
 generated/
-~*
+,*
