@@ -10,7 +10,10 @@ def main() -> None:
 	for attempt in range(max_retries):
 		try:
 			with urllib.request.urlopen(version_url, timeout=10) as response:
-				version = json.load(response)['FIREFOX_ESR']
+				versions = json.load(response)
+				version = versions['FIREFOX_ESR_NEXT']
+				if not version:
+					version = versions['FIREFOX_ESR']
 			break 
 		except:
 			if attempt + 1 == max_retries: raise
