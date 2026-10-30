@@ -129,9 +129,16 @@ modules:
 
   - name: lang-packs
     buildsystem: simple
-    build-commands:
-      - mkdir -p /app/firefox/distribution/extensions
-      # https://github.com/flathub/org.mozilla.Thunderbird/blob/22e4c5bfffa1a28507a0009c3c84c4f17d69c262/org.mozilla.Thunderbird.json#L244
-      - for lang in langpacks/*.xpi;do export locale=${lang:19:2}; install -Dm644 -t /app/share/runtime/locale/$locale/ $lang; ln -sf /app/share/runtime/locale/$locale/$(basename $lang) /app/firefox/distribution/extensions/$(basename $lang); done
+    build-commands: 
+      - | # https://github.com/mozilla-firefox/firefox/blob/main/python/mozbuild/mozbuild/repackaging/flatpak.py#L225-L239
+        mkdir -p ${FLATPAK_DEST}/lib/firefox/distribution/extensions
+        for langpack in langpacks/langpack-*@firefox.mozilla.org.xpi
+        do
+          name="$(basename "$lang")"
+          lang="${name:9:${#name}-33}"
+          locale="${lang%%-*}"
+          install -Dm644 -t /app/share/runtime/langpack/"$lang"/ "$langpack"
+          ln -sf /app/share/runtime/langpack/"$lang"/"$name" ${FLATPAK_DEST}/lib/firefox/distribution/extensions/"$name"
+        done
     sources:
       - generated/langpacks.json
