@@ -1,0 +1,111 @@
+name: Flatpak
+
+on:
+  # Rebuild once a week
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-26.08
+      options: --privileged
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Generate sources
+        shell: bash
+        run: python3 generate.py
+
+      - name: Setup GPG
+        id: gpg
+        uses: crazy-max/ghaction-import-gpg@v7
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          fingerprint: AC31DE00E40072FE45F4D05449D65666D3B2DFFC
+
+      - name: Install BaseApp
+        shell: bash
+        run: flatpak install flathub -y org.mozilla.firefox.BaseApp/x86_64/26.08
+
+      - name: Build Flatpak
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          manifest-path: org.mozilla.firefox_esr.yaml
+          bundle: firefox_esr.flatpak
+          # Keep in sync with default-branch in the manifest
+          branch: unofficial
+          arch: x86_64
+          repo-dir: repo
+          gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
+          artifact-name: org.mozilla.firefox_esr-x86_64
+
+      - name: Update repository metadata
+        shell: bash
+        env:
+          GPG_FINGERPRINT: ${{ steps.gpg.outputs.fingerprint }}
+        run: |
+          set -euo pipefail
+
+          REPO_URL="https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}"
+
+          flatpak build-update-repo --gpg-sign="$GPG_FINGERPRINT" repo
+
+          GPG_KEY="$(gpg --export "$GPG_FINGERPRINT" | base64 -w0)"
+          test -n "$GPG_KEY"
+
+          {
+            echo '[Flatpak Repo]'
+            echo 'Title=Unofficial Firefox ESR'
+            echo 'Comment=Unofficial Firefox ESR Flatpak repository'
+            echo "Url=${REPO_URL}"
+            echo "Homepage=https://github.com/${GITHUB_REPOSITORY}"
+            echo 'Icon=https://raw.githubusercontent.com/flatpak/flatpak/main/flatpak.png'
+            echo "GPGKey=${GPG_KEY}"
+          } > repo/index.flatpakrepo
+
+      - name: Verify repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s repo/summary
+          test -s repo/index.flatpakrepo
+          grep -q '^GPGKey=' repo/index.flatpakrepo
+
+          flatpak remote-add --if-not-exists --no-gpg-verify local-repo "file://$PWD/repo"
+          flatpak remote-ls --app local-repo | grep 'org.mozilla.firefox_esr' >/dev/null
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: repo
+          include-hidden-files: true
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

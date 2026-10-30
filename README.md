@@ -50,7 +50,7 @@ Otherwise feel free to open an issue here.
 
 Mozilla for mainlining the stable flatpak recipes.
 
-Original Firefox ESR flatpak project https://gitlab.com/projects261/firefox-esr-flatpak and CI https://github.com/andyholmes/flatter
+Original Firefox ESR flatpak project https://gitlab.com/projects261/firefox-esr-flatpak and CI https://github.com/flatpak/flatpak-github-actions
 
 Logo: [Source](https://www.creativetail.com/40-free-flat-animal-icons/), [License](https://www.creativetail.com/licensing/)
 
@@ -78,7 +78,7 @@ python3 generate.py && flatpak-builder build --force-clean --user --install-deps
 
 ## Signature
 
-GPG key used to sign repo: F8A5F798CA257770
+GPG key used to sign repo: 49D65666D3B2DFFC
 
 You can verify the key used, using
 
@@ -89,7 +89,7 @@ gpg --no-default-keyring --keyring=</var/lib | ~/.local/share>/flatpak/repo/fire
 and even create the keyring yourself using:
 
 ```bash
-gpg --no-default-keyring --keyring ./firefox_esr.trustedkeys.gpg --keyserver keyserver.ubuntu.com --recv-keys F8A5F798CA257770
+gpg --no-default-keyring --keyring ./firefox_esr.trustedkeys.gpg --keyserver keyserver.ubuntu.com --recv-keys 49D65666D3B2DFFC
 
 mv firefox_esr.trustedkeys.gpg </var/lib | ~/.local/share>/flatpak/repo
 ```
