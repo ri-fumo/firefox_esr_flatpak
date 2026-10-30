@@ -56,8 +56,8 @@ modules:
   - name: search-provider
     buildsystem: simple
     build-commands:
-      - install -Dm644 org.mozilla.firefox_esr.search-provider.ini "$FLATPAK_DEST"/share/gnome-shell/search-providers/${FLATPAK_ID}-search-provider.ini
-      - install -Dm644 org.mozilla.firefox_esr.SearchProvider.service "$FLATPAK_DEST"/share/dbus-1/services/${FLATPAK_ID}.SearchProvider.service
+      - install -Dm644 org.mozilla.firefox_esr.search-provider.ini "$FLATPAK_DEST"/share/gnome-shell/search-providers/"$FLATPAK_ID"-search-provider.ini
+      - install -Dm644 org.mozilla.firefox_esr.SearchProvider.service "$FLATPAK_DEST"/share/dbus-1/services/"$FLATPAK_ID".SearchProvider.service
     sources:
       - type: file
         path: files/org.mozilla.firefox_esr.search-provider.ini
@@ -67,7 +67,7 @@ modules:
   - name: desktop-file
     buildsystem: simple
     build-commands:
-      - install -Dm644 org.mozilla.firefox_esr.desktop "$FLATPAK_DEST"/share/applications/${FLATPAK_ID}.desktop
+      - install -Dm644 org.mozilla.firefox_esr.desktop "$FLATPAK_DEST"/share/applications/"$FLATPAK_ID".desktop
     sources:
       - type: file
         path: files/org.mozilla.firefox_esr.desktop
@@ -91,7 +91,7 @@ modules:
   - name: metainfo
     buildsystem: simple
     build-commands:
-      - install -Dm644 org.mozilla.firefox_esr.appdata.xml "$FLATPAK_DEST"/share/metainfo/${FLATPAK_ID}.metainfo.xml
+      - install -Dm644 org.mozilla.firefox_esr.appdata.xml "$FLATPAK_DEST"/share/metainfo/"$FLATPAK_ID".metainfo.xml
     sources:
       - type: file
         path: files/org.mozilla.firefox_esr.appdata.xml
@@ -99,8 +99,8 @@ modules:
   - name: icons
     buildsystem: simple
     build-commands:
-      - install -Dm644 "Fx-Browser-icon-fullColor.svg" ""$FLATPAK_DEST"/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg"
-      - install -Dm644 "Fx-Browser-icon-oneColor-white.svg" ""$FLATPAK_DEST"/share/icons/hicolor/symbolic/apps/${FLATPAK_ID}-symbolic.svg"
+      - install -Dm644 "Fx-Browser-icon-fullColor.svg" ""$FLATPAK_DEST"/share/icons/hicolor/scalable/apps/"$FLATPAK_ID".svg"
+      - install -Dm644 "Fx-Browser-icon-oneColor-white.svg" ""$FLATPAK_DEST"/share/icons/hicolor/symbolic/apps/"$FLATPAK_ID"-symbolic.svg"
     sources:
       - type: file
         path: files/Fx-Browser-icon-fullColor.svg
@@ -137,8 +137,8 @@ modules:
           name="$(basename "$langpack")"
           locale="${name:9:${#name}-33}"
           lang="${locale%%-*}"
-          install -Dm644 -t "$FLATPAK_DEST"/share/runtime/langpack/"$lang"/ "$langpack"
-          ln -sf "$FLATPAK_DEST"/share/runtime/langpack/"$lang"/"$name" "$FLATPAK_DEST"/lib/firefox/distribution/extensions/"$name"
+          install -Dm644 -t "$FLATPAK_DEST"/share/runtime/locale/"$lang"/ "$langpack"
+          ln -sf "$FLATPAK_DEST"/share/runtime/locale/"$lang"/"$name" "$FLATPAK_DEST"/lib/firefox/distribution/extensions/"$name"
         done
     sources:
       - generated/langpacks.json
