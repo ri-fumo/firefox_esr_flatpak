@@ -23,8 +23,8 @@
   <url type="help">https://github.com/ri-fumo/firefox_esr_flatpak/issues</url>
   <url type="translate">https://wiki.mozilla.org/L10n:Starting_a_localization</url>
   <releases>
-    <release version="153.0.6esr"  date="2026-10-27">
-      <description/>
+    <release version="esr">
+      <url>https://www.firefox.com/firefox/organizations/notes/</url>
     </release>
   </releases>
   <screenshots>
